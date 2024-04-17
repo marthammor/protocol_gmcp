@@ -120,357 +120,342 @@ https://wiki.mudlet.org/w/Standards:Discord_GMCP */
  Types.
  ******************************************************************************/
 
-typedef enum
-{
-   false,
-   true
+typedef enum {
+  false,
+  true
 } bool_t;
 
-typedef enum
-{
-   eNEGOTIATED_TTYPE,
-   eNEGOTIATED_ECHO,
-   eNEGOTIATED_NAWS,
-   eNEGOTIATED_CHARSET,
-   eNEGOTIATED_MSDP,
-   eNEGOTIATED_MSSP,
-   eNEGOTIATED_ATCP,
-   eNEGOTIATED_MSP,
-   eNEGOTIATED_MXP,
-   eNEGOTIATED_MXP2,
-   eNEGOTIATED_MCCP,
+typedef enum {
+  eNEGOTIATED_TTYPE,
+  eNEGOTIATED_ECHO,
+  eNEGOTIATED_NAWS,
+  eNEGOTIATED_CHARSET,
+  eNEGOTIATED_MSDP,
+  eNEGOTIATED_MSSP,
+  eNEGOTIATED_ATCP,
+  eNEGOTIATED_MSP,
+  eNEGOTIATED_MXP,
+  eNEGOTIATED_MXP2,
+  eNEGOTIATED_MCCP,
 
-   /*************** START GMCP ***************/
-   eNEGOTIATED_GMCP,
-   eNEGOTIATED_SGA,
-   /*************** END GMCP ***************/
+  /*************** START GMCP ***************/
+  eNEGOTIATED_GMCP,
+  eNEGOTIATED_SGA,
+  /*************** END GMCP ***************/
 
-   eNEGOTIATED_MAX /* This must always be last */
+  eNEGOTIATED_MAX /* This must always be last */
 } negotiated_t;
 
-typedef enum
-{
-   eUNKNOWN,
-   eNO,
-   eSOMETIMES,
-   eYES
+typedef enum {
+  eUNKNOWN,
+  eNO,
+  eSOMETIMES,
+  eYES
 } support_t;
 
-typedef enum
-{
-   eMSDP_NONE = -1, /* This must always be first. */
+typedef enum {
+  eMSDP_NONE = -1, /* This must always be first. */
 
-   /* General */
-   eMSDP_CHARACTER_NAME,
-   eMSDP_SERVER_ID,
-   eMSDP_SERVER_TIME,
-   eMSDP_SNIPPET_VERSION,
+  /* General */
+  eMSDP_CHARACTER_NAME,
+  eMSDP_SERVER_ID,
+  eMSDP_SERVER_TIME,
+  eMSDP_SNIPPET_VERSION,
 
-   /* Character */
-   eMSDP_AFFECTS,
-   eMSDP_ALIGNMENT,
-   eMSDP_EXPERIENCE,
-   eMSDP_EXPERIENCE_MAX,
-   eMSDP_EXPERIENCE_TNL,
-   eMSDP_HEALTH,
-   eMSDP_HEALTH_MAX,
-   eMSDP_LEVEL,
-   eMSDP_RACE,
-   eMSDP_CLASS,
-   eMSDP_MANA,
-   eMSDP_MANA_MAX,
-   eMSDP_WIMPY,
-   eMSDP_PRACTICE,
-   eMSDP_MONEY,
-   eMSDP_MOVEMENT,
-   eMSDP_MOVEMENT_MAX,
-   eMSDP_HITROLL,
-   eMSDP_DAMROLL,
-   eMSDP_AC,
-   eMSDP_STR,
-   eMSDP_INT,
-   eMSDP_WIS,
-   eMSDP_DEX,
-   eMSDP_CON,
-   eMSDP_STR_PERM,
-   eMSDP_INT_PERM,
-   eMSDP_WIS_PERM,
-   eMSDP_DEX_PERM,
-   eMSDP_CON_PERM,
+  /* Character */
+  eMSDP_AFFECTS,
+  eMSDP_ALIGNMENT,
+  eMSDP_EXPERIENCE,
+  eMSDP_EXPERIENCE_MAX,
+  eMSDP_EXPERIENCE_TNL,
+  eMSDP_HEALTH,
+  eMSDP_HEALTH_MAX,
+  eMSDP_LEVEL,
+  eMSDP_RACE,
+  eMSDP_CLASS,
+  eMSDP_MANA,
+  eMSDP_MANA_MAX,
+  eMSDP_WIMPY,
+  eMSDP_PRACTICE,
+  eMSDP_MONEY,
+  eMSDP_MOVEMENT,
+  eMSDP_MOVEMENT_MAX,
+  eMSDP_HITROLL,
+  eMSDP_DAMROLL,
+  eMSDP_AC,
+  eMSDP_STR,
+  eMSDP_INT,
+  eMSDP_WIS,
+  eMSDP_DEX,
+  eMSDP_CON,
+  eMSDP_STR_PERM,
+  eMSDP_INT_PERM,
+  eMSDP_WIS_PERM,
+  eMSDP_DEX_PERM,
+  eMSDP_CON_PERM,
 
-   /* Combat */
-   eMSDP_OPPONENT_HEALTH,
-   eMSDP_OPPONENT_HEALTH_MAX,
-   eMSDP_OPPONENT_LEVEL,
-   eMSDP_OPPONENT_NAME,
+  /* Combat */
+  eMSDP_OPPONENT_HEALTH,
+  eMSDP_OPPONENT_HEALTH_MAX,
+  eMSDP_OPPONENT_LEVEL,
+  eMSDP_OPPONENT_NAME,
 
-   /* World */
-   eMSDP_AREA_NAME,
-   eMSDP_ROOM_EXITS,
-   eMSDP_ROOM_NAME,
-   eMSDP_ROOM_VNUM,
-   eMSDP_WORLD_TIME,
+  /* World */
+  eMSDP_AREA_NAME,
+  eMSDP_ROOM_EXITS,
+  eMSDP_ROOM_NAME,
+  eMSDP_ROOM_VNUM,
+  eMSDP_WORLD_TIME,
 
-   /* Configuration */
-   eMSDP_CLIENT_ID,
-   eMSDP_CLIENT_VERSION,
-   eMSDP_PLUGIN_ID,
-   eMSDP_ANSI_COLORS,
-   eMSDP_XTERM_256_COLORS,
-   eMSDP_UTF_8,
-   eMSDP_SOUND,
-   eMSDP_MXP,
+  /* Configuration */
+  eMSDP_CLIENT_ID,
+  eMSDP_CLIENT_VERSION,
+  eMSDP_PLUGIN_ID,
+  eMSDP_ANSI_COLORS,
+  eMSDP_XTERM_256_COLORS,
+  eMSDP_UTF_8,
+  eMSDP_SOUND,
+  eMSDP_MXP,
 
-   /* GUI variables */
-   eMSDP_BUTTON_1,
-   eMSDP_BUTTON_2,
-   eMSDP_BUTTON_3,
-   eMSDP_BUTTON_4,
-   eMSDP_BUTTON_5,
-   eMSDP_GAUGE_1,
-   eMSDP_GAUGE_2,
-   eMSDP_GAUGE_3,
-   eMSDP_GAUGE_4,
-   eMSDP_GAUGE_5,
+  /* GUI variables */
+  eMSDP_BUTTON_1,
+  eMSDP_BUTTON_2,
+  eMSDP_BUTTON_3,
+  eMSDP_BUTTON_4,
+  eMSDP_BUTTON_5,
+  eMSDP_GAUGE_1,
+  eMSDP_GAUGE_2,
+  eMSDP_GAUGE_3,
+  eMSDP_GAUGE_4,
+  eMSDP_GAUGE_5,
 
-   eMSDP_MAX /* This must always be last */
+  eMSDP_MAX /* This must always be last */
 } variable_t;
 
 /*************** START GMCP ***************/
-typedef enum
-{
-   JSMN_UNDEFINED = 0,
-   JSMN_OBJECT = 1,
-   JSMN_ARRAY = 2,
-   JSMN_STRING = 3,
-   JSMN_PRIMITIVE = 4
+typedef enum {
+  JSMN_UNDEFINED = 0,
+  JSMN_OBJECT = 1,
+  JSMN_ARRAY = 2,
+  JSMN_STRING = 3,
+  JSMN_PRIMITIVE = 4
 } jsmntype_t;
 
-enum jsmnerr
-{
-   JSMN_ERROR_NOMEM = -1, /* Not enough tokens were provided */
-   JSMN_ERROR_INVAL = -2, /* Invalid character inside JSON string */
-   JSMN_ERROR_PART = -3   /* The string is not a full JSON packet, more bytes expected */
+enum jsmnerr {
+  JSMN_ERROR_NOMEM = -1, /* Not enough tokens were provided */
+  JSMN_ERROR_INVAL = -2, /* Invalid character inside JSON string */
+  JSMN_ERROR_PART = -3   /* The string is not a full JSON packet, more bytes expected */
 };
 
 typedef struct
 {
-   jsmntype_t type;
-   int start;
-   int end;
-   int size;
+  jsmntype_t type;
+  int start;
+  int end;
+  int size;
 } jsmntok_t;
 
 typedef struct
 {
-   unsigned int pos;     /* offset in the JSON string */
-   unsigned int toknext; /* next token to allocate */
-   int toksuper;         /* superior token node, e.g. parent object or array */
+  unsigned int pos;     /* offset in the JSON string */
+  unsigned int toknext; /* next token to allocate */
+  int toksuper;         /* superior token node, e.g. parent object or array */
 } jsmn_parser;
 
-typedef enum
-{
-   GMCP_STRING,
-   GMCP_NUMBER,
-   GMCP_OBJECT,
-   GMCP_ARRAY
+typedef enum {
+  GMCP_STRING,
+  GMCP_NUMBER,
+  GMCP_OBJECT,
+  GMCP_ARRAY
 } GMCP_TYPE;
 
-typedef enum
-{
-   GMCP_CORE_NONE = -1,
+typedef enum {
+  GMCP_CORE_NONE = -1,
 
-   GMCP_CORE_HELLO,
-   GMCP_CORE_SUPPORTS_SET,
-   GMCP_CORE_SUPPORTS_ADD,
-   GMCP_CORE_SUPPORTS_REMOVE,
-   GMCP_EXTERNAL_DISCORD_HELLO,
-   GMCP_EXTERNAL_DISCORD_GET,
-   GMCP_RECEIVE_MAX
+  GMCP_CORE_HELLO,
+  GMCP_CORE_SUPPORTS_SET,
+  GMCP_CORE_SUPPORTS_ADD,
+  GMCP_CORE_SUPPORTS_REMOVE,
+  GMCP_EXTERNAL_DISCORD_HELLO,
+  GMCP_EXTERNAL_DISCORD_GET,
+  GMCP_RECEIVE_MAX
 } GMCP_RECEIVE;
 
-typedef enum
-{
-   GMCP_SUPPORT_NONE = -1,
+typedef enum {
+  GMCP_SUPPORT_NONE = -1,
 
-   GMCP_SUPPORT_CHAR,
-   GMCP_SUPPORT_ROOM,
-   GMCP_SUPPORT_MAX
+  GMCP_SUPPORT_CHAR,
+  GMCP_SUPPORT_ROOM,
+  GMCP_SUPPORT_MAX
 } GMCP_SUPPORT;
 
-typedef enum
-{
-   GMCP_NONE = -1,
+typedef enum {
+  GMCP_NONE = -1,
 
-   GMCP_BASE,
-   GMCP_VITALS,
-   GMCP_STATS,
-   GMCP_AC,
-   GMCP_WORTH,
-   GMCP_AFFECTED,
-   GMCP_ENEMIES,
-   GMCP_ROOM,
-   GMCP_PACKAGE_MAX
+  GMCP_BASE,
+  GMCP_VITALS,
+  GMCP_STATS,
+  GMCP_AC,
+  GMCP_WORTH,
+  GMCP_AFFECTED,
+  GMCP_ENEMIES,
+  GMCP_ROOM,
+  GMCP_PACKAGE_MAX
 } GMCP_PACKAGE;
 
-typedef enum
-{
-   GMCP_NULL = -1,
+typedef enum {
+  GMCP_NULL = -1,
 
-   /* Hello */
-   GMCP_CLIENT,
-   GMCP_VERSION,
+  /* Hello */
+  GMCP_CLIENT,
+  GMCP_VERSION,
 
-   /* Base */
-   GMCP_NAME,
-   GMCP_RACE,
-   GMCP_CLASS,
+  /* Base */
+  GMCP_NAME,
+  GMCP_RACE,
+  GMCP_CLASS,
 
-   /* Vitals */
-   GMCP_HP,
-   GMCP_MANA,
-   GMCP_MOVE,
-   GMCP_MAX_HP,
-   GMCP_MAX_MANA,
-   GMCP_MAX_MOVE,
+  /* Vitals */
+  GMCP_HP,
+  GMCP_MANA,
+  GMCP_MOVE,
+  GMCP_MAX_HP,
+  GMCP_MAX_MANA,
+  GMCP_MAX_MOVE,
 
-   /* Stats */
-   GMCP_STR,
-   GMCP_INT,
-   GMCP_WIS,
-   GMCP_DEX,
-   GMCP_CON,
-   GMCP_HITROLL,
-   GMCP_DAMROLL,
-   GMCP_STR_PERM,
-   GMCP_INT_PERM,
-   GMCP_WIS_PERM,
-   GMCP_DEX_PERM,
-   GMCP_CON_PERM,
-   GMCP_WIMPY,
+  /* Stats */
+  GMCP_STR,
+  GMCP_INT,
+  GMCP_WIS,
+  GMCP_DEX,
+  GMCP_CON,
+  GMCP_HITROLL,
+  GMCP_DAMROLL,
+  GMCP_STR_PERM,
+  GMCP_INT_PERM,
+  GMCP_WIS_PERM,
+  GMCP_DEX_PERM,
+  GMCP_CON_PERM,
+  GMCP_WIMPY,
 
-   /* AC */
-   GMCP_AC_PIERCE,
-   GMCP_AC_BASH,
-   GMCP_AC_SLASH,
-   GMCP_AC_EXOTIC,
+  /* AC */
+  GMCP_AC_PIERCE,
+  GMCP_AC_BASH,
+  GMCP_AC_SLASH,
+  GMCP_AC_EXOTIC,
 
-   /* Worth */
-   GMCP_ALIGNMENT,
-   GMCP_XP,
-   GMCP_XP_MAX,
-   GMCP_XP_TNL,
-   GMCP_PRACTICE,
-   GMCP_MONEY,
+  /* Worth */
+  GMCP_ALIGNMENT,
+  GMCP_XP,
+  GMCP_XP_MAX,
+  GMCP_XP_TNL,
+  GMCP_PRACTICE,
+  GMCP_MONEY,
 
-   /* Enemies */
-   GMCP_ENEMY,
+  /* Enemies */
+  GMCP_ENEMY,
 
-   /* Affected */
-   GMCP_AFFECT,
+  /* Affected */
+  GMCP_AFFECT,
 
-   /* Room */
-   GMCP_AREA,
-   GMCP_ROOM_NAME,
-   GMCP_ROOM_EXITS,
-   GMCP_ROOM_VNUM,
+  /* Room */
+  GMCP_AREA,
+  GMCP_ROOM_NAME,
+  GMCP_ROOM_EXITS,
+  GMCP_ROOM_VNUM,
 
-   GMCP_MAX
+  GMCP_MAX
 
 } GMCP_VARIABLE;
 
-struct gmcp_receive_struct
-{
-   GMCP_RECEIVE module;
-   char *string;
+struct gmcp_receive_struct {
+  GMCP_RECEIVE module;
+  char *string;
 };
 
-struct gmcp_package_struct
-{
-   GMCP_PACKAGE package;
-   GMCP_SUPPORT support;
-   char *module;
-   char *message;
-   char bSettable;
+struct gmcp_package_struct {
+  GMCP_PACKAGE package;
+  GMCP_SUPPORT support;
+  char *module;
+  char *message;
+  char bSettable;
 };
 
-struct gmcp_support_struct
-{
-   GMCP_SUPPORT module;
-   char *name;
+struct gmcp_support_struct {
+  GMCP_SUPPORT module;
+  char *name;
 };
 
-struct gmcp_variable_struct
-{
-   GMCP_VARIABLE variable;
-   GMCP_PACKAGE package;
-   char *name;
-   GMCP_TYPE type;
+struct gmcp_variable_struct {
+  GMCP_VARIABLE variable;
+  GMCP_PACKAGE package;
+  char *name;
+  GMCP_TYPE type;
 };
 /*************** END GMCP ***************/
 
 typedef struct
 {
-   variable_t Variable;  /* The enum type of this variable */
-   const char *pName;    /* The string name of this variable */
-   bool_t bString;       /* Is this variable a string or a number? */
-   bool_t bConfigurable; /* Can it be configured by the client? */
-   bool_t bWriteOnce;    /* Can only set this variable once */
-   bool_t bGUI;          /* It's a special GUI configuration variable */
-   int Min;              /* The minimum valid value or string length */
-   int Max;              /* The maximum valid value or string length */
-   int Default;          /* The default value for a number */
-   const char *pDefault; /* The default value for a string */
+  variable_t Variable;  /* The enum type of this variable */
+  const char *pName;    /* The string name of this variable */
+  bool_t bString;       /* Is this variable a string or a number? */
+  bool_t bConfigurable; /* Can it be configured by the client? */
+  bool_t bWriteOnce;    /* Can only set this variable once */
+  bool_t bGUI;          /* It's a special GUI configuration variable */
+  int Min;              /* The minimum valid value or string length */
+  int Max;              /* The maximum valid value or string length */
+  int Default;          /* The default value for a number */
+  const char *pDefault; /* The default value for a string */
 } variable_name_t;
 
 typedef struct
 {
-   bool_t bReport;     /* Is this variable being reported? */
-   bool_t bDirty;      /* Does this variable need to be sent again? */
-   int ValueInt;       /* The numeric value of the variable */
-   char *pValueString; /* The string value of the variable */
+  bool_t bReport;     /* Is this variable being reported? */
+  bool_t bDirty;      /* Does this variable need to be sent again? */
+  int ValueInt;       /* The numeric value of the variable */
+  char *pValueString; /* The string value of the variable */
 } MSDP_t;
 
 typedef struct
 {
-   const char *pName;          /* The name of the MSSP variable */
-   const char *pValue;         /* The value of the MSSP variable */
-   const char *(*pFunction)(); /* Optional function to return the value */
+  const char *pName;          /* The name of the MSSP variable */
+  const char *pValue;         /* The value of the MSSP variable */
+  const char *(*pFunction)(); /* Optional function to return the value */
 } MSSP_t;
 
 typedef struct
 {
-   int WriteOOB; /* Used internally to indicate OOB data */
-   bool_t Negotiated[eNEGOTIATED_MAX];
-   bool_t bIACMode;        /* Current mode - deals with broken packets */
-   bool_t bNegotiated;     /* Indicates client successfully negotiated */
-   bool_t bRenegotiate;    /* Workaround for clients that autoconnect */
-   bool_t bNeedMXPVersion; /* Workaround for clients that autoconnect */
-   bool_t bBlockMXP;       /* Used internally based on MXP version */
-   bool_t bTTYPE;          /* The client supports TTYPE */
-   bool_t bECHO;           /* Toggles ECHO on/off */
-   bool_t bNAWS;           /* The client supports NAWS */
-   bool_t bCHARSET;        /* The client supports CHARSET */
-   bool_t bMSDP;           /* The client supports MSDP */
-   bool_t bMSSP;           /* The client supports MSSP */
-   bool_t bATCP;           /* The client supports ATCP */
-   bool_t bMSP;            /* The client supports MSP */
-   bool_t bMXP;            /* The client supports MXP */
-   bool_t bMCCP;           /* The client supports MCCP */
-   support_t b256Support;  /* The client supports XTerm 256 colors */
-   int ScreenWidth;        /* The client's screen width */
-   int ScreenHeight;       /* The client's screen height */
-   char *pMXPVersion;      /* The version of MXP supported */
-   char *pLastTTYPE;       /* Used for the cyclic TTYPE check */
-   MSDP_t **pVariables;    /* The MSDP variables */
+  int WriteOOB; /* Used internally to indicate OOB data */
+  bool_t Negotiated[eNEGOTIATED_MAX];
+  bool_t bIACMode;        /* Current mode - deals with broken packets */
+  bool_t bNegotiated;     /* Indicates client successfully negotiated */
+  bool_t bRenegotiate;    /* Workaround for clients that autoconnect */
+  bool_t bNeedMXPVersion; /* Workaround for clients that autoconnect */
+  bool_t bBlockMXP;       /* Used internally based on MXP version */
+  bool_t bTTYPE;          /* The client supports TTYPE */
+  bool_t bECHO;           /* Toggles ECHO on/off */
+  bool_t bNAWS;           /* The client supports NAWS */
+  bool_t bCHARSET;        /* The client supports CHARSET */
+  bool_t bMSDP;           /* The client supports MSDP */
+  bool_t bMSSP;           /* The client supports MSSP */
+  bool_t bATCP;           /* The client supports ATCP */
+  bool_t bMSP;            /* The client supports MSP */
+  bool_t bMXP;            /* The client supports MXP */
+  bool_t bMCCP;           /* The client supports MCCP */
+  support_t b256Support;  /* The client supports XTerm 256 colors */
+  int ScreenWidth;        /* The client's screen width */
+  int ScreenHeight;       /* The client's screen height */
+  char *pMXPVersion;      /* The version of MXP supported */
+  char *pLastTTYPE;       /* Used for the cyclic TTYPE check */
+  MSDP_t **pVariables;    /* The MSDP variables */
 
-   /*************** START GMCP ***************/
-   bool_t bGMCP;                                /* The client supports GMCP */
-   bool_t bSGA;                                 /* The client supports SGA */
-   bool_t bGMCPSupport[GMCP_SUPPORT_MAX];       /* The client supports specific modules */
-   bool_t bGMCPUpdatePackage[GMCP_PACKAGE_MAX]; /* Send these packages to the client. */
-   char *GMCPVariable[GMCP_MAX];                /* The message for each variable */
-   /*************** END GMCP ***************/
+  /*************** START GMCP ***************/
+  bool_t bGMCP;                                /* The client supports GMCP */
+  bool_t bSGA;                                 /* The client supports SGA */
+  bool_t bGMCPSupport[GMCP_SUPPORT_MAX];       /* The client supports specific modules */
+  bool_t bGMCPUpdatePackage[GMCP_PACKAGE_MAX]; /* Send these packages to the client. */
+  char *GMCPVariable[GMCP_MAX];                /* The message for each variable */
+                                               /*************** END GMCP ***************/
 
 } protocol_t;
 
