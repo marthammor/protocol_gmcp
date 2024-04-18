@@ -3132,26 +3132,18 @@ void ParseGMCP(descriptor_t *apDescriptor, char *string) {
     case GMCP_EXTERNAL_DISCORD_HELLO: {
       char buf[MAX_PROTOCOL_BUFFER];
 
-#ifndef COLOR_CODE_FIX
       sprintf(buf, "%sExternal.Discord.Info { \"inviteurl\": \"%s\", \"applicationid\": \"%s\" }%s",
               (char *) iac_sb_gmcp,
               DISCORD_INVITE_URL,
               DISCORD_APPLICACTION_ID,
               (char *) iac_se);
-#else
-      sprintf(buf, "%sExternal.Discord.Info {{ \"inviteurl\": \"%s\", \"applicationid\": \"%s\" }%s",
-              (char *) iac_sb_gmcp,
-              DISCORD_INVITE_URL,
-              DISCORD_APPLICACTION_ID,
-              (char *) iac_se);
-#endif
+
       Write(apDescriptor, buf);
     } break;
 
     case GMCP_EXTERNAL_DISCORD_GET: {
       char buf[MAX_PROTOCOL_BUFFER];
 
-#ifndef COLOR_CODE_FIX
       sprintf(buf, "%sExternal.Discord.Status { "
                    "\"smallimage\": [\"%s\", \"%s\", \"%s\"], "
                    "\"smallimagetext\": \"%s\", "
@@ -3166,8 +3158,7 @@ void ParseGMCP(descriptor_t *apDescriptor, char *string) {
               DISCORD_STATE,
               MUD_NAME,
               (char *) iac_se);
-#else
-#endif
+
       Write(apDescriptor, buf);
     } break;
   }
@@ -3179,11 +3170,7 @@ void WriteGMCP(descriptor_t *apDescriptor, GMCP_PACKAGE package) {
   char buf[MAX_PROTOCOL_BUFFER], buf2[MAX_PROTOCOL_BUFFER];
   int i, first = 0;
 
-#ifndef COLOR_CODE_FIX
   sprintf(buf, "%s%s.%s { ", (char *) iac_sb_gmcp, GMCPPackageTable[package].module, GMCPPackageTable[package].message);
-#else
-  sprintf(buf, "%s%s.%s {{ ", (char *) iac_sb_gmcp, GMCPPackageTable[package].module, GMCPPackageTable[package].message);
-#endif
 
   for (i = 0; GMCPVariableTable[i].variable != GMCP_MAX; i++) {
     if (GMCPVariableTable[i].package != package)
@@ -3200,15 +3187,9 @@ void WriteGMCP(descriptor_t *apDescriptor, GMCP_PACKAGE package) {
           sprintf(buf2, "\"%s\": \"%d\"", GMCPVariableTable[i].name, atoi(apDescriptor->pProtocol->GMCPVariable[i]));
           break;
 
-#ifndef COLOR_CODE_FIX
         case GMCP_OBJECT:
           sprintf(buf2, ", \"%s\": { %s }", GMCPVariableTable[i].name, apDescriptor->pProtocol->GMCPVariable[i]);
           break;
-#else
-        case GMCP_OBJECT:
-          sprintf(buf2, ", \"%s\": {{ %s }", GMCPVariableTable[i].name, apDescriptor->pProtocol->GMCPVariable[i]);
-          break;
-#endif
 
         case GMCP_ARRAY:
           sprintf(buf, "%s%s.%s [ %s ]%s", (char *) iac_sb_gmcp, GMCPPackageTable[package].module, GMCPPackageTable[package].message, apDescriptor->pProtocol->GMCPVariable[i], (char *) iac_se);
@@ -3229,15 +3210,9 @@ void WriteGMCP(descriptor_t *apDescriptor, GMCP_PACKAGE package) {
           sprintf(buf2, ", \"%s\": \"%d\"", GMCPVariableTable[i].name, atoi(apDescriptor->pProtocol->GMCPVariable[i]));
           break;
 
-#ifndef COLOR_CODE_FIX
         case GMCP_OBJECT:
           sprintf(buf2, ", \"%s\": { %s }", GMCPVariableTable[i].name, apDescriptor->pProtocol->GMCPVariable[i]);
           break;
-#else
-        case GMCP_OBJECT:
-          sprintf(buf2, ", \"%s\": {{ %s }", GMCPVariableTable[i].name, apDescriptor->pProtocol->GMCPVariable[i]);
-          break;
-#endif
 
         default:
           break;

@@ -82,11 +82,6 @@ typedef struct descriptor_data descriptor_t;
 /*************** START GMCP ***************/
 #define TELOPT_GMCP 201
 
-/* UNCOMMENT the line below if your color code is '{'. */
-/*
-#define COLOR_CODE_FIX
-*/
-
 /* These constants are used to send Discord information to the client, set appropriately.
 https://wiki.mudlet.org/w/Standards:Discord_GMCP */
 
